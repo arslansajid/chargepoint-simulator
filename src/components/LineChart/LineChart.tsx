@@ -6,10 +6,9 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
-  ResponsiveContainer
+  ResponsiveContainer,
 } from "recharts";
-import React from 'react';
-
+import React from "react";
 
 type DataKey = {
   time: string;
@@ -50,21 +49,20 @@ const LineChartComponent = ({
           </text>
         );
     }
-    const transformedLabel = payload.value.toUpperCase(); // Example: transform to uppercase
   };
 
   return (
     <div className="w-full h-[300px] md:h-[300px]">
-    <ResponsiveContainer width="100%" height="100%">
-    <LineChart width={600} height={300} data={data}>
-      <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey={xAxisDataKey} tick={renderTick} />
-      <YAxis />
-      <Tooltip />
-      <Legend />
-      <Line type="monotone" dataKey={dataKey} stroke="#8884d8" />
-    </LineChart>
-    </ResponsiveContainer>
+      <ResponsiveContainer width="100%" height="100%">
+        <LineChart width={600} height={300} data={data}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey={xAxisDataKey} tick={renderTick} />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Line type="monotone" dataKey={dataKey} stroke="#8884d8" />
+        </LineChart>
+      </ResponsiveContainer>
     </div>
   );
 };

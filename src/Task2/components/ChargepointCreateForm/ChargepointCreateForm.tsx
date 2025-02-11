@@ -6,7 +6,7 @@ type ChargePoint = {
   powerRating: number;
 };
 
-const ChargePointForm: React.FC = () => {
+const ChargePointCreateForm: React.FC = () => {
   const [chargePoints, setChargePoints] = useState<ChargePoint[]>([
     { id: 1, count: 1, powerRating: 1 },
   ]);
@@ -43,7 +43,7 @@ const ChargePointForm: React.FC = () => {
 
   return (
     <div className="max-w-6xl mx-auto">
-      <form role='form' onSubmit={handleSubmit} className="min-h-[100px]">
+      <form role="form" onSubmit={handleSubmit} className="min-h-[100px]">
         {chargePoints.map((cp, index) => {
           return (
             <div
@@ -96,4 +96,4 @@ const ChargePointForm: React.FC = () => {
   );
 };
 
-export default ChargePointForm;
+export default ChargePointCreateForm;

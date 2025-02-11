@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState } from "react";
 import {
   chargingDataPerDay,
   chargingDataPerMonth,
@@ -11,9 +11,9 @@ import Card from "../components/Card/Card";
 import ChargePointCreateForm from "./components/ChargepointCreateForm/ChargepointCreateForm";
 import ChargePointSimulateForm from "./components/ChargepointSimulateForm/ChargepointSimulateForm";
 import LineChartComponent from "../components/LineChart/LineChart";
-import Modal from "../components/Modal/Modal";
 import PieChartComponent from "../components/PieChart/PieChart";
 import BarChartComponent from "../components/BarChart/BarChart";
+import Modal from "../components/Modal";
 
 const ChargingSimulator = () => {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -37,10 +37,8 @@ const ChargingSimulator = () => {
           </button>
         </div>
 
-        <section id="charging-events" className='my-6'>
-          <p className="text-xl font-semibold text-gray-800">
-            Charging Events
-          </p>
+        <section id="charging-events" className="my-6">
+          <p className="text-xl font-semibold text-gray-800">Charging Events</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 my-4">
             <Card title={"Charging Events per Year:"} description={"36500"} />
             <Card title={"Charging Events per Month:"} description={"300"} />
@@ -49,7 +47,7 @@ const ChargingSimulator = () => {
           </div>
         </section>
 
-        <section id="graphs" className='my-6'>
+        <section id="graphs" className="my-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             <div className="flex flex-col max-w-sm rounded-lg border border-gray-200 bg-white p-3">
               <p className="text-xl font-semibold text-gray-800">Chargers</p>
@@ -73,7 +71,9 @@ const ChargingSimulator = () => {
               />
             </div>
             <div className="flex flex-col max-w-sm rounded-lg border border-gray-200 bg-white p-3">
-              <p className="text-xl font-semibold text-gray-800">Charging Sessions (24 hrs)</p>
+              <p className="text-xl font-semibold text-gray-800">
+                Charging Sessions (24 hrs)
+              </p>
               <BarChartComponent
                 id="sessions"
                 data={chargingSessionsData}

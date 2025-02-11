@@ -1,13 +1,15 @@
-import React, { PureComponent } from 'react';
-import { PieChart, Pie, Sector, Cell, ResponsiveContainer, Legend, Tooltip } from 'recharts';
+import React from "react";
+import {
+  PieChart,
+  Pie,
+  Cell,
+  ResponsiveContainer,
+  Legend,
+  Tooltip,
+} from "recharts";
+import { COLORS } from "../../constants/Colors";
 
-const data = [
-  { name: 'Group A', value: 400 },
-  { name: 'Group B', value: 300 },
-  { name: 'Group C', value: 300 },
-  { name: 'Group D', value: 200 },
-];
-const COLORS = [ '#00C49F',  '#FF8042'];
+const colors = [COLORS.green, COLORS.orange];
 
 type DataKey = {
   name: string;
@@ -20,12 +22,7 @@ export interface PieChartComponentProps {
   dataKey: string;
 }
 
-const PieChartComponent = ({
-  id,
-  data,
-  dataKey,
-}: PieChartComponentProps) => {
-
+const PieChartComponent = ({ id, data, dataKey }: PieChartComponentProps) => {
   return (
     <div className="w-full h-[300px] md:h-[300px]">
       <ResponsiveContainer width="100%" height="100%">
@@ -41,7 +38,10 @@ const PieChartComponent = ({
             dataKey={dataKey}
           >
             {data.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+              <Cell
+                key={`cell-${index}`}
+                fill={colors[index % colors.length]}
+              />
             ))}
           </Pie>
           <Tooltip />

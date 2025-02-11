@@ -5,8 +5,7 @@ const DAYS_PER_YEAR = 365;
 const TOTAL_INTERVALS = INTERVALS_PER_DAY * DAYS_PER_YEAR;
 
 export function simulateChargePoints() {
-  // Further increased EV arrival probability to balance concurrency
-  const EV_ARRIVAL_PROB = Array(INTERVALS_PER_DAY).fill(0.025); // Adjusted for higher utilization
+  const EV_ARRIVAL_PROB = Array(INTERVALS_PER_DAY).fill(0.025);
 
   // Adjusted probability distribution of charging needs in kWh to allow for more charging activity
   const CHARGING_NEEDS_PROB = [

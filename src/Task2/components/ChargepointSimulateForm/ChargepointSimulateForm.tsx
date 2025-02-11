@@ -1,16 +1,10 @@
 import React, { useState } from "react";
 
-type ChargePoint = {
-  id: number;
-  count: number;
-  powerRating: number;
-};
-
-const ChargepointSimulateForm: React.FC = () => {
-    const [numChargePoints, setNumChargePoints] = useState(20);
-    const [arrivalMultiplier, setArrivalMultiplier] = useState(100);
-    const [carConsumption, setCarConsumption] = useState(18);
-    const [chargerPower, setChargerPower] = useState(11);
+const ChargePointSimulateForm: React.FC = () => {
+  const [numChargePoints, setNumChargePoints] = useState(20);
+  const [arrivalMultiplier, setArrivalMultiplier] = useState(100);
+  const [carConsumption, setCarConsumption] = useState(18);
+  const [chargerPower, setChargerPower] = useState(11);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -19,7 +13,7 @@ const ChargepointSimulateForm: React.FC = () => {
 
   return (
     <div className="max-w-4xl mx-auto">
-      <form role='form' onSubmit={handleSubmit}>
+      <form role="form" onSubmit={handleSubmit}>
         <div className="space-y-4">
           <label className="flex flex-col text-gray-600">
             Number of Charge Points
@@ -68,4 +62,4 @@ const ChargepointSimulateForm: React.FC = () => {
   );
 };
 
-export default ChargepointSimulateForm;
+export default ChargePointSimulateForm;
