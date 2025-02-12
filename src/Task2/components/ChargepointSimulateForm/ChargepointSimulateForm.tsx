@@ -1,5 +1,5 @@
 import React, { useState, forwardRef } from "react";
-import { runSimulation, SimulationResults } from "./SimulationService";
+import { runSimulation, SimulationResults } from "../../../services/SimulationService";
 import { useSimulationContext } from "../../../context/SimulationContext";
 
 interface ChargePointSimulateFormProps {
