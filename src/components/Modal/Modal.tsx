@@ -4,10 +4,19 @@ export interface ModalProps {
   isOpen: boolean;
   title: string;
   onClose: () => void;
+  onSubmit: () => void;
   children?: ReactNode;
+  submitButtonText?: string;
 }
 
-const Modal = ({ isOpen, title, onClose, children }: ModalProps) => {
+const Modal = ({
+  isOpen,
+  title,
+  onClose,
+  children,
+  onSubmit,
+  submitButtonText = "Save",
+}: ModalProps) => {
   if (!isOpen) return null;
 
   return (
@@ -26,10 +35,10 @@ const Modal = ({ isOpen, title, onClose, children }: ModalProps) => {
             Cancel
           </button>
           <button
-            onClick={onClose}
+            onClick={onSubmit}
             className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
           >
-            Save
+            {submitButtonText}
           </button>
         </div>
       </div>
