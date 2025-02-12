@@ -39,6 +39,8 @@ npm test  # or yarn test
 ## 📜 Folder Structure
 ```
 /src
+  ├── Task1/             # Task 1 - simulation
+  ├── Task2/             # Frontend - visualization
   ├── components/        # Reusable UI components
   ├── constants/         # Constants for colors etc
   ├── hooks/             # Custom hooks
