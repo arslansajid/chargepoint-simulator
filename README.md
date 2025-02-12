@@ -26,22 +26,11 @@ The goal is to estimate the actual power consumption of EV charging points over 
    ```
 4. Open your browser and navigate to `http://localhost:3000`.
 
-## 🔧 Configuration
-- Create a `.env` file in the root directory and add environment variables if needed.
-- Example:
-  ```sh
-  REACT_APP_API_URL=http://localhost:5000/api
-  ```
 
 ## 🧪 Running Tests
 To run unit tests:
 ```sh
 npm test  # or yarn test
-```
-
-To run end-to-end tests (if using Cypress or Playwright):
-```sh
-npm run test:e2e
 ```
 
 ## 📜 Folder Structure
@@ -60,9 +49,9 @@ To build for production:
 ```sh
 npm run build
 ```
-To deploy (if using Vercel or Netlify):
+To deploy (if using Vercel):
 ```sh
-vercel deploy  # or netlify deploy
+vercel deploy
 ```
 
 ## 📌 Contributing
