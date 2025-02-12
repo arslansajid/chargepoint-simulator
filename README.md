@@ -1,6 +1,9 @@
 # EV Charging Simulation & Visualization
 
-## 🚀 Overview
+## 🚀 Test environment URL
+https://chargepoint-simulator-sand.vercel.app/
+
+##  💻 Overview
 This project simulates the energy demand of EV charging stations and provides a frontend interface to visualize key parameters and results.
 The goal is to estimate the actual power consumption of EV charging points over a year using a statistical simulation. The results are then displayed using an interactive frontend.
 
@@ -13,7 +16,7 @@ The goal is to estimate the actual power consumption of EV charging points over 
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/your-username/your-project.git
+   git clone https://github.com/arslansajid/chargepoint-simulator.git
    cd your-project
    ```
 2. Install dependencies:
