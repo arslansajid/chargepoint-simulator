@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useCallback } from "react";
 import {
   chargingDataPerDay,
   chargingDataPerMonth,
@@ -14,10 +14,26 @@ import LineChartComponent from "../components/LineChart/LineChart";
 import PieChartComponent from "../components/PieChart/PieChart";
 import BarChartComponent from "../components/BarChart/BarChart";
 import Modal from "../components/Modal";
+import SimulationResults from "./components/SimulationResults";
 
 const ChargingSimulator = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [isCreateModalOpen, setCreateModalOpen] = useState(false);
+
+  const simulationFormRef = useRef<HTMLFormElement>(null);
+  const createChargersFormRef = useRef<HTMLFormElement>(null);
+
+  const submitSimulationForm = useCallback(() => {
+    simulationFormRef.current?.dispatchEvent(
+      new Event("submit", { bubbles: true, cancelable: true })
+    );
+  }, [simulationFormRef]);
+
+  const submitCreateChargersForm = useCallback(() => {
+    createChargersFormRef.current?.dispatchEvent(
+      new Event("submit", { bubbles: true, cancelable: true })
+    );
+  }, [createChargersFormRef]);
 
   return (
     <>
@@ -37,7 +53,11 @@ const ChargingSimulator = () => {
           </button>
         </div>
 
-        <section id="charging-events" className="my-6">
+        <section id="charging-events" className="my-8">
+          <SimulationResults />
+        </section>
+
+        <section id="charging-events" className="my-8">
           <p className="text-xl font-semibold text-gray-800">Charging Events</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 my-4">
             <Card title={"Charging Events per Year:"} description={"36500"} />
@@ -47,7 +67,7 @@ const ChargingSimulator = () => {
           </div>
         </section>
 
-        <section id="graphs" className="my-6">
+        <section id="graphs" className="my-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             <div className="flex flex-col max-w-sm rounded-lg border border-gray-200 bg-white p-3">
               <p className="text-xl font-semibold text-gray-800">Chargers</p>
@@ -126,16 +146,26 @@ const ChargingSimulator = () => {
       <Modal
         title="Simulate Charge points"
         isOpen={isModalOpen}
+        onSubmit={submitSimulationForm}
         onClose={() => setModalOpen(false)}
+        submitButtonText="Simulate"
       >
-        <ChargePointSimulateForm />
+        <ChargePointSimulateForm
+          ref={simulationFormRef}
+          onClose={() => setModalOpen(false)}
+        />
       </Modal>
       <Modal
         title="Create Charge points"
         isOpen={isCreateModalOpen}
         onClose={() => setCreateModalOpen(false)}
+        onSubmit={submitCreateChargersForm}
+        submitButtonText="Create"
       >
-        <ChargePointCreateForm />
+        <ChargePointCreateForm
+          ref={createChargersFormRef}
+          onClose={() => setCreateModalOpen(false)}
+        />
       </Modal>
     </>
   );
