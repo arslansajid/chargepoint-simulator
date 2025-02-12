@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, forwardRef } from "react";
 
 type ChargePoint = {
   id: number;
@@ -6,7 +6,14 @@ type ChargePoint = {
   powerRating: number;
 };
 
-const ChargePointCreateForm: React.FC = () => {
+type ChargePointCreateFormProps = {
+  onClose: () => void;
+};
+
+const ChargePointCreateForm = forwardRef<
+  HTMLFormElement,
+  ChargePointCreateFormProps
+>((props, formRef) => {
   const [chargePoints, setChargePoints] = useState<ChargePoint[]>([
     { id: 1, count: 1, powerRating: 1 },
   ]);
@@ -39,11 +46,17 @@ const ChargePointCreateForm: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Add logic to save the charge points or send data to backend
+    props.onClose();
   };
 
   return (
     <div className="max-w-6xl mx-auto">
-      <form role="form" onSubmit={handleSubmit} className="min-h-[100px]">
+      <form
+        ref={formRef}
+        role="form"
+        onSubmit={handleSubmit}
+        className="min-h-[100px]"
+      >
         {chargePoints.map((cp, index) => {
           return (
             <div
@@ -74,6 +87,7 @@ const ChargePointCreateForm: React.FC = () => {
               </label>
               {index >= 1 && (
                 <button
+                  type="button"
                   onClick={() => handleRemoveCharger(cp.id)}
                   className="px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition duration-300 h-[42px]"
                 >
@@ -83,7 +97,8 @@ const ChargePointCreateForm: React.FC = () => {
             </div>
           );
         })}
-        <div className="flex justify-end">
+      </form>
+      <div className="flex justify-end">
           <button
             onClick={handleAddCharger}
             className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition duration-300 min-w-[130px]"
@@ -91,9 +106,8 @@ const ChargePointCreateForm: React.FC = () => {
             Add Charger
           </button>
         </div>
-      </form>
     </div>
   );
-};
+});
 
 export default ChargePointCreateForm;

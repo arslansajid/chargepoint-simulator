@@ -4,7 +4,7 @@ import ChargepointSimulateForm from "./ChargepointSimulateForm";
 
 describe("ChargepointSimulateForm Component", () => {
   test("renders the form with initial state", () => {
-    render(<ChargepointSimulateForm />);
+    render(<ChargepointSimulateForm onClose={() => {}} />);
 
     // Check initial values in inputs
     expect(screen.getByLabelText(/Number of Charge Points/i)).toHaveValue(20);
@@ -14,7 +14,7 @@ describe("ChargepointSimulateForm Component", () => {
   });
 
   test("updates input values correctly", () => {
-    render(<ChargepointSimulateForm />);
+    render(<ChargepointSimulateForm onClose={() => {}} />);
 
     const numChargePointsInput = screen.getByLabelText(/Number of Charge Points/i) as HTMLInputElement;
     const arrivalMultiplierInput = screen.getByLabelText(/Arrival Probability Multiplier \(%\)/i) as HTMLInputElement;

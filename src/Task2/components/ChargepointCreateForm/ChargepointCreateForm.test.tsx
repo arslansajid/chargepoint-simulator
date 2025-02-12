@@ -5,7 +5,7 @@ import ChargePointForm from "./ChargepointCreateForm";
 
 describe("ChargePointForm Component", () => {
   test("renders the form with initial charge point", () => {
-    render(<ChargePointForm />);
+    render(<ChargePointForm onClose={() => {}} />);
 
     // Check for initial input fields
     expect(screen.getByLabelText(/Power \(in kWh\)/i)).toBeInTheDocument();
@@ -16,7 +16,7 @@ describe("ChargePointForm Component", () => {
   });
 
   test("updates input values correctly", () => {
-    render(<ChargePointForm />);
+    render(<ChargePointForm onClose={() => {}} />);
 
     const powerInput = screen.getByLabelText(/Power \(in kWh\)/i) as HTMLInputElement;
     const quantityInput = screen.getByLabelText(/Quantity/i) as HTMLInputElement;
@@ -29,7 +29,7 @@ describe("ChargePointForm Component", () => {
   });
 
   test("adds a new charge point when clicking 'Add Charger'", () => {
-    render(<ChargePointForm />);
+    render(<ChargePointForm onClose={() => {}} />);
 
     const addButton = screen.getByText(/Add Charger/i);
     fireEvent.click(addButton);
@@ -43,7 +43,7 @@ describe("ChargePointForm Component", () => {
   });
 
   test("removes a charge point when clicking 'Remove'", () => {
-    render(<ChargePointForm />);
+    render(<ChargePointForm onClose={() => {}} />);
 
     const addButton = screen.getByText(/Add Charger/i);
     fireEvent.click(addButton); // Add one more charge point

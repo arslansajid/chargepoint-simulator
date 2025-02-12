@@ -1,19 +1,42 @@
-import React, { useState } from "react";
+import React, { useState, forwardRef } from "react";
+import { runSimulation, SimulationResults } from "./SimulationService";
+import { useSimulationContext } from "../../../context/SimulationContext";
 
-const ChargePointSimulateForm: React.FC = () => {
+interface ChargePointSimulateFormProps {
+  onClose: () => void;
+}
+
+const ChargePointSimulateForm = forwardRef<
+  HTMLFormElement,
+  ChargePointSimulateFormProps
+>((props, formRef) => {
+  const { onClose } = props;
   const [numChargePoints, setNumChargePoints] = useState(20);
   const [arrivalMultiplier, setArrivalMultiplier] = useState(100);
   const [carConsumption, setCarConsumption] = useState(18);
-  const [chargerPower, setChargerPower] = useState(11);
+  const [chargingPower, setChargingPower] = useState(11);
+
+  const { actions } = useSimulationContext();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Add logic to save the charge points or send data to backend
+    try {
+      const results: SimulationResults = runSimulation(
+        numChargePoints,
+        arrivalMultiplier,
+        carConsumption,
+        chargingPower
+      );
+      actions.updateData(results);
+      onClose();
+    } catch (error) {
+      console.error("Error during simulation:", error);
+    }
   };
 
   return (
     <div className="max-w-4xl mx-auto">
-      <form role="form" onSubmit={handleSubmit}>
+      <form ref={formRef} role="form" onSubmit={handleSubmit}>
         <div className="space-y-4">
           <label className="flex flex-col text-gray-600">
             Number of Charge Points
@@ -51,8 +74,8 @@ const ChargePointSimulateForm: React.FC = () => {
             <input
               type="number"
               className="border p-2 rounded"
-              value={chargerPower}
-              onChange={(e) => setChargerPower(Number(e.target.value))}
+              value={chargingPower}
+              onChange={(e) => setChargingPower(Number(e.target.value))}
               min="0"
             />
           </label>
@@ -60,6 +83,6 @@ const ChargePointSimulateForm: React.FC = () => {
       </form>
     </div>
   );
-};
+});
 
 export default ChargePointSimulateForm;
